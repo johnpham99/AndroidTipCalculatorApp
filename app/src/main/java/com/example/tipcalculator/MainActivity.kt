@@ -7,6 +7,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.SeekBar
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -22,6 +23,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tvTipAmount: TextView
     private lateinit var tvTotalAmount: TextView
     private lateinit var tvTipDescription: TextView
+    private lateinit var tvNumPeople: TextView
+    private lateinit var btnUp: ImageView
+    private lateinit var btnDown: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +36,9 @@ class MainActivity : AppCompatActivity() {
         tvTipAmount = findViewById(R.id.tvTipAmount)
         tvTotalAmount = findViewById(R.id.tvTotalAmount)
         tvTipDescription = findViewById(R.id.tvTipDescription)
+        tvNumPeople = findViewById(R.id.tvNumPeople)
+        btnUp = findViewById(R.id.btnUp)
+        btnDown = findViewById(R.id.btnDown)
 
         seekBarTip.progress = INITIAL_TIP_PERCENT
         tvTipPercentLabel.text = "$INITIAL_TIP_PERCENT%"
@@ -61,6 +68,21 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
+
+        var numPeople = 1;
+        btnUp.setOnClickListener() {
+            numPeople++
+            tvNumPeople.text = numPeople.toString()
+            computeTipandTotal()
+        }
+
+        btnDown.setOnClickListener() {
+            if(numPeople != 1) {
+                numPeople--
+                tvNumPeople.text = numPeople.toString();
+                computeTipandTotal()
+            }
+        }
     }
 
     private fun updateTipDescription(progress: Int) {
@@ -89,8 +111,9 @@ class MainActivity : AppCompatActivity() {
         }
         val baseAmount = etBaseAmount.text.toString().toDouble()
         val tipPercent = seekBarTip.progress.toDouble()
+        val numPeople = tvNumPeople.text.toString().toDouble()
 
-        val tipAmount = baseAmount * (tipPercent / 100)
+        val tipAmount = (baseAmount * (tipPercent / 100))/numPeople;
         val totalAmount = baseAmount + tipAmount
 
         tvTipAmount.text = "%.2f".format(tipAmount)

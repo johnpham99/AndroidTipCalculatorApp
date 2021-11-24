@@ -25,7 +25,7 @@
         android:layout_marginTop="32dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/tvBaseLabel"
+        app:layout_constraintStart_toStartOf="@+id/tvBaseLabel"
         app:layout_constraintTop_toBottomOf="@+id/tvBaseLabel"
         tools:text="25%" />
 
@@ -33,11 +33,11 @@
         android:id="@+id/tvTipLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="32dp"
         android:text="Tip"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintEnd_toEndOf="@+id/tvBaseLabel"
-        app:layout_constraintTop_toBottomOf="@+id/tvTipPercentLabel" />
+        app:layout_constraintStart_toStartOf="@+id/btnDown"
+        app:layout_constraintTop_toBottomOf="@+id/btnDown" />
 
     <TextView
         android:id="@+id/tvTotalLabel"
@@ -46,7 +46,7 @@
         android:layout_marginTop="32dp"
         android:text="Total"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintEnd_toEndOf="@+id/tvBaseLabel"
+        app:layout_constraintStart_toStartOf="@+id/tvTipLabel"
         app:layout_constraintTop_toBottomOf="@+id/tvTipLabel" />
 
     <!-- Views on the right side -->
@@ -115,4 +115,46 @@
         app:layout_constraintStart_toStartOf="@+id/seekBarTip"
         app:layout_constraintTop_toBottomOf="@+id/seekBarTip"
         tools:text="Acceptable" />
+
+    <ImageView
+        android:id="@+id/btnUp"
+        android:layout_width="33dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="52dp"
+        android:clickable="true"
+        app:layout_constraintStart_toStartOf="@+id/tvTipPercentLabel"
+        app:layout_constraintTop_toBottomOf="@+id/tvTipPercentLabel"
+        app:srcCompat="@drawable/ic_up" />
+
+    <ImageView
+        android:id="@+id/btnDown"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
+        android:clickable="true"
+        app:layout_constraintStart_toStartOf="@+id/btnUp"
+        app:layout_constraintTop_toBottomOf="@+id/btnUp"
+        app:srcCompat="@drawable/ic_down" />
+
+    <TextView
+        android:id="@+id/tvNumPeople"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="sans-serif"
+        android:text="1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintBottom_toBottomOf="@+id/tvPeopleText"
+        app:layout_constraintStart_toEndOf="@+id/tvPeopleText"
+        app:layout_constraintTop_toTopOf="@+id/tvPeopleText" />
+
+    <TextView
+        android:id="@+id/tvPeopleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Number of People:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="@+id/etBaseAmount"
+        app:layout_constraintTop_toBottomOf="@+id/tvTipDescription" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
