@@ -26,6 +26,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tvNumPeople: TextView
     private lateinit var btnUp: ImageView
     private lateinit var btnDown: ImageView
+    private lateinit var tvBillAmount: TextView
+    private lateinit var tvFinalTotalAmount: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +41,8 @@ class MainActivity : AppCompatActivity() {
         tvNumPeople = findViewById(R.id.tvNumPeople)
         btnUp = findViewById(R.id.btnUp)
         btnDown = findViewById(R.id.btnDown)
+        tvBillAmount = findViewById(R.id.tvBillAmount)
+        tvFinalTotalAmount = findViewById(R.id.tvFinalTotalAmount)
 
         seekBarTip.progress = INITIAL_TIP_PERCENT
         tvTipPercentLabel.text = "$INITIAL_TIP_PERCENT%"
@@ -47,7 +51,7 @@ class MainActivity : AppCompatActivity() {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 Log.i(TAG, "onProgressChanged $progress")
                 tvTipPercentLabel.text =  "$progress%"
-                computeTipandTotal()
+                computeValues()
                 updateTipDescription(progress)
             }
 
@@ -64,7 +68,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun afterTextChanged(s: Editable?) {
                 Log.i(TAG, "afterTextChanged $s")
-                computeTipandTotal()
+                computeValues()
             }
 
         })
@@ -73,14 +77,14 @@ class MainActivity : AppCompatActivity() {
         btnUp.setOnClickListener() {
             numPeople++
             tvNumPeople.text = numPeople.toString()
-            computeTipandTotal()
+            computeValues()
         }
 
         btnDown.setOnClickListener() {
             if(numPeople != 1) {
                 numPeople--
                 tvNumPeople.text = numPeople.toString();
-                computeTipandTotal()
+                computeValues()
             }
         }
     }
@@ -103,20 +107,27 @@ class MainActivity : AppCompatActivity() {
         tvTipDescription.setTextColor(color)
     }
 
-    private fun computeTipandTotal() {
+    private fun computeValues() {
         if (etBaseAmount.text.isEmpty()) {
+            tvBillAmount.text = " "
             tvTipAmount.text = ""
             tvTotalAmount.text = ""
+            tvFinalTotalAmount.text = " "
             return
         }
+
         val baseAmount = etBaseAmount.text.toString().toDouble()
         val tipPercent = seekBarTip.progress.toDouble()
         val numPeople = tvNumPeople.text.toString().toDouble()
 
+        val billAmount = baseAmount/numPeople;
         val tipAmount = (baseAmount * (tipPercent / 100))/numPeople;
-        val totalAmount = baseAmount + tipAmount
+        val totalAmount = billAmount + tipAmount
+        val finalTotalAmount = baseAmount + (baseAmount * (tipPercent / 100))
 
+        tvBillAmount.text = "%.2f".format(billAmount)
         tvTipAmount.text = "%.2f".format(tipAmount)
         tvTotalAmount.text = "%.2f".format(totalAmount)
+        tvFinalTotalAmount.text = "%.2f".format(finalTotalAmount)
     }
 }

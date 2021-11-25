@@ -8,12 +8,12 @@
 
     <!-- Views on the left side -->
     <TextView
-        android:id="@+id/tvBaseLabel"
+        android:id="@+id/tvTotalBillLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="48dp"
-        android:text="Base"
+        android:text="Total Bill"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,8 +25,8 @@
         android:layout_marginTop="32dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/tvBaseLabel"
-        app:layout_constraintTop_toBottomOf="@+id/tvBaseLabel"
+        app:layout_constraintStart_toStartOf="@+id/tvTotalBillLabel"
+        app:layout_constraintTop_toBottomOf="@+id/tvTotalBillLabel"
         tools:text="25%" />
 
     <TextView
@@ -34,17 +34,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Tip"
+        android:text="Tip/Person"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toStartOf="@+id/btnDown"
-        app:layout_constraintTop_toBottomOf="@+id/btnDown" />
+        app:layout_constraintTop_toBottomOf="@+id/tvBillLabel" />
 
     <TextView
         android:id="@+id/tvTotalLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Total"
+        android:text="Total/Person"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toStartOf="@+id/tvTipLabel"
         app:layout_constraintTop_toBottomOf="@+id/tvTipLabel" />
@@ -54,14 +54,14 @@
         android:id="@+id/etBaseAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="55dp"
         android:ems="8"
         android:hint="Bill Amount"
         android:inputType="numberDecimal"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvBaseLabel"
-        app:layout_constraintStart_toEndOf="@+id/tvBaseLabel"
-        app:layout_constraintTop_toTopOf="@+id/tvBaseLabel" />
+        app:layout_constraintBottom_toBottomOf="@+id/tvTotalBillLabel"
+        app:layout_constraintStart_toEndOf="@+id/tvTotalBillLabel"
+        app:layout_constraintTop_toTopOf="@+id/tvTotalBillLabel" />
 
     <SeekBar
         android:id="@+id/seekBarTip"
@@ -156,5 +156,45 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toStartOf="@+id/etBaseAmount"
         app:layout_constraintTop_toBottomOf="@+id/tvTipDescription" />
+
+    <TextView
+        android:id="@+id/tvBillLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Bill/Person"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="@+id/btnDown"
+        app:layout_constraintTop_toBottomOf="@+id/btnDown" />
+
+    <TextView
+        android:id="@+id/tvBillAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toBottomOf="@+id/tvBillLabel"
+        app:layout_constraintStart_toStartOf="@+id/seekBarTip"
+        app:layout_constraintTop_toTopOf="@+id/tvBillLabel"
+        tools:text="50" />
+
+    <TextView
+        android:id="@+id/tvFinalTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Final Bill Total"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="@+id/tvTotalBillLabel"
+        app:layout_constraintTop_toBottomOf="@+id/tvTotalLabel" />
+
+    <TextView
+        android:id="@+id/tvFinalTotalAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toBottomOf="@+id/tvFinalTotal"
+        app:layout_constraintStart_toStartOf="@+id/etBaseAmount"
+        app:layout_constraintTop_toTopOf="@+id/tvFinalTotal"
+        tools:text="150" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
